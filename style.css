@@ -1475,7 +1475,7 @@ section { padding: 120px 0; position: relative; }
 
 @media(max-width:500px) { .lead-form__row { flex-direction: column; } }
 
-.lead-form input {
+.lead-form input, .lead-form select {
     flex: 1;
     padding: 16px 20px;
     border-radius: var(--radius-sm);
@@ -1488,9 +1488,9 @@ section { padding: 120px 0; position: relative; }
     outline: none;
 }
 
-.lead-form input::placeholder { color: var(--muted-on-dark); }
+.lead-form input::placeholder, .lead-form select::placeholder { color: var(--muted-on-dark); }
 
-.lead-form input:focus {
+.lead-form input:focus, .lead-form select:focus {
     border-color: var(--emerald-bright);
     box-shadow: 0 0 0 3px var(--emerald-glow);
 }
