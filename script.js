@@ -162,7 +162,7 @@
             entries.forEach(function (entry) {
                 if (entry.isIntersecting && !counted) {
                     counted = true;
-                    document.querySelectorAll('.dash__num').forEach(function (el, index) {
+                    document.querySelectorAll('.metrics-hero-stat__num').forEach(function (el, index) {
                         setTimeout(function () {
                             countUp(el);
                         }, index * 150);
