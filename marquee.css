@@ -1,0 +1,349 @@
+/* ================================================
+   PROLANZ — BRAND LOGO + MARQUEE TESTIMONIALS
+   ================================================ */
+
+/* ── Logo styles ── */
+.logo-wrapper-light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    padding: 6px 16px;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.logo-wrapper-light:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.nav__logo-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.preloader__logo-img {
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+    animation: preloaderPulse 1.2s ease-in-out infinite;
+}
+
+/* Footer logo */
+.footer__logo-img {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* ── Marquee Wrapper ── */
+.marquee-wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 8px 0;
+    /* Edge fade masks */
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        black 8%,
+        black 92%,
+        transparent 100%
+    );
+}
+
+/* ── Marquee Track ── */
+.marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    will-change: transform;
+}
+
+.marquee-track--left {
+    animation: marqueeLeft 55s linear infinite;
+}
+
+.marquee-track--right {
+    animation: marqueeRight 50s linear infinite;
+}
+
+/* Pause on hover */
+.marquee-wrapper:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+/* ── Testimonial Card ── */
+.tcard {
+    flex: 0 0 380px;
+    background: var(--ink-3);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    cursor: default;
+}
+
+.tcard::before {
+    content: '"';
+    position: absolute;
+    top: -4px;
+    right: 20px;
+    font-size: 80px;
+    font-family: Georgia, serif;
+    color: var(--brand);
+    opacity: 0.10;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.tcard:hover {
+    border-color: rgba(255, 50, 51, 0.28);
+    box-shadow: 0 8px 32px rgba(255, 50, 51, 0.08);
+}
+
+.tcard--alt:hover {
+    border-color: rgba(245, 166, 35, 0.28);
+    box-shadow: 0 8px 32px rgba(245, 166, 35, 0.08);
+}
+
+.tcard--alt::before {
+    color: var(--gold);
+}
+
+.tcard__stars {
+    color: var(--gold);
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.tcard__quote {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-on-dark);
+    margin: 0;
+    flex: 1;
+    font-style: italic;
+}
+
+.tcard__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-on-dark);
+}
+
+.tcard__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tcard__name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--text-on-dark);
+}
+
+.tcard__role {
+    font-size: 11px;
+    color: var(--muted-on-dark);
+    margin-top: 2px;
+    font-family: var(--mono);
+}
+
+/* ── Responsive ── */
+@media(max-width: 600px) {
+    .tcard {
+        flex: 0 0 300px;
+        padding: 20px;
+    }
+}
+
+/* ================================================
+   ACCREDITATION TICKER (ENDLESS SCROLL)
+   ================================================ */
+.ticker {
+    background: var(--ink-3);
+    border-top: 1px solid var(--border-on-dark);
+    border-bottom: 1px solid var(--border-on-dark);
+    padding: 14px 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.marquee {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee__content {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    width: max-content;
+    animation: marqueeContinuous 35s linear infinite;
+    will-change: transform;
+}
+
+/* Pause ticker on hover so users can read stats */
+.ticker:hover .marquee__content {
+    animation-play-state: paused;
+}
+
+@keyframes marqueeContinuous {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee__content span {
+    font-size: 13.5px;
+    color: var(--text-on-dark);
+    font-family: var(--sans);
+    display: inline-flex;
+    align-items: center;
+}
+
+.marquee__content span strong {
+    font-family: var(--display);
+    font-weight: 800;
+    margin-right: 6px;
+    color: var(--brand);
+}
+
+/* Gold dot separator */
+.marquee__dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+}
+
+/* ================================================
+   BRAND LOGOS MARQUEE (ACCREDITATIONS)
+   ================================================ */
+.logos__section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.logos-marquee-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 40px;
+    /* Edge fade masks */
+    -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        90deg,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+    );
+}
+
+.logos-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    width: max-content;
+    animation: logosMarqueeScroll 40s linear infinite;
+    will-change: transform;
+}
+
+.logos-marquee-wrapper:hover .logos-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes logosMarqueeScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Adjust original badge/word styles for flex flow */
+.logos-marquee-track .logos__badge,
+.logos-marquee-track .logos__word {
+    flex-shrink: 0;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    filter: grayscale(100%);
+    cursor: default;
+}
+
+.logos-marquee-track .logos__badge:hover,
+.logos-marquee-track .logos__word:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+.logos-marquee-track .logos__badge img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logos-marquee-track .logos__word {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.logos-marquee-track .logos__word span {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--ink-1);
+    white-space: nowrap;
+}

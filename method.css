@@ -1,0 +1,358 @@
+/* ================================================
+   PROLANZ — PROPRIETARY METHOD SECTION
+   Premium vertical timeline layout
+   ================================================ */
+
+/* ── Section wrapper ── */
+.method-section {
+    padding: 120px 0 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ── Section head: perfectly centered ── */
+.method-head {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 80px;
+}
+
+.method-head__title {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(30px, 4.5vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--text-on-dark);
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+}
+
+.method-head__title .gradient-text {
+    display: block;
+    font-size: clamp(24px, 3.5vw, 42px);
+}
+
+.method-head__sub {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--muted-on-dark);
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+/* ── Timeline container ── */
+.method-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0 0 20px;
+}
+
+/* The central vertical line */
+.method-timeline__line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--brand) 10%,
+        var(--brand) 50%,
+        var(--gold) 80%,
+        transparent 100%
+    );
+    transform: translateX(-50%);
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* ── Each step row ── */
+.method-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 56px 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove alternating layout rules since everything is centered now */
+.method-step--alt {
+    direction: ltr;
+}
+
+/* ── Phase badge ── */
+.method-step__badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 2;
+    background: var(--ink-1); /* to hide the line behind it */
+    padding: 10px 0;
+}
+
+.method-step__num {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--brand);
+    color: #fff;
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 6px rgba(255, 50, 51, 0.12), 0 0 30px rgba(255, 50, 51, 0.25);
+    flex-shrink: 0;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.method-step__badge--gold .method-step__num {
+    background: var(--gold);
+    color: #1a0f0f;
+    box-shadow: 0 0 0 6px rgba(245, 166, 35, 0.12), 0 0 30px rgba(245, 166, 35, 0.20);
+}
+
+.method-step:hover .method-step__num {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 10px rgba(255, 50, 51, 0.10), 0 0 48px rgba(255, 50, 51, 0.30);
+}
+
+.method-step--alt:hover .method-step__num {
+    box-shadow: 0 0 0 10px rgba(245, 166, 35, 0.10), 0 0 48px rgba(245, 166, 35, 0.28);
+}
+
+.method-step__phase {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--brand);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.method-step__badge--gold .method-step__phase {
+    color: var(--gold);
+}
+
+/* Horizontal connector line (badge → card) */
+.method-step__connector {
+    display: none; /* handled via gap */
+}
+
+/* ── Step Card ── */
+.method-step__card {
+    background: var(--ink-3);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-md);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 680px;
+    margin: 0 auto;
+    transition: border-color var(--transition-base), transform var(--transition-slow), box-shadow var(--transition-slow);
+}
+
+/* Top accent line on hover */
+.method-step__card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--brand), var(--brand-bright));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease-out-expo);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.method-step__card--alt::before {
+    background: linear-gradient(90deg, var(--gold-hover), var(--gold));
+}
+
+.method-step:hover .method-step__card {
+    border-color: rgba(255, 50, 51, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.20);
+}
+
+.method-step--alt:hover .method-step__card {
+    border-color: rgba(245, 166, 35, 0.25);
+}
+
+.method-step:hover .method-step__card::before,
+.method-step--alt:hover .method-step__card::before {
+    transform: scaleX(1);
+}
+
+/* ── Card contents ── */
+.method-step__icon {
+    font-size: 32px;
+    margin-bottom: 14px;
+    display: block;
+    line-height: 1;
+}
+
+.method-step__title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--text-on-dark);
+    margin: 0 0 12px;
+    line-height: 1.2;
+}
+
+.method-step__desc {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--muted-on-dark);
+    margin: 0 0 20px;
+}
+
+/* ── Deliverables checklist ── */
+.method-step__deliverables {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 24px;
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left; /* Keep the actual list items left-aligned for readability */
+}
+
+.method-step__deliverables li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: var(--text-on-dark);
+    line-height: 1.5;
+}
+
+.method-step__deliverables li::before {
+    content: '';
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ff3233" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+    background-size: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(255, 50, 51, 0.10);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    flex-shrink: 0;
+}
+
+.method-step__card--alt .method-step__deliverables li::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23F5A623" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+    background-color: rgba(245, 166, 35, 0.10);
+}
+
+/* ── Timeline pill ── */
+.method-step__timeline-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand);
+    background: rgba(255, 50, 51, 0.08);
+    border: 1px solid rgba(255, 50, 51, 0.18);
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+}
+
+.method-step__timeline-pill--gold {
+    color: var(--gold);
+    background: rgba(245, 166, 35, 0.08);
+    border-color: rgba(245, 166, 35, 0.18);
+}
+
+/* ── CTA Banner ── */
+.method-cta {
+    margin-top: 72px;
+}
+
+.method-cta__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    background: var(--ink-3);
+    border: 1px solid rgba(255, 50, 51, 0.20);
+    border-radius: var(--radius-lg);
+    padding: 44px 52px;
+    position: relative;
+    overflow: hidden;
+}
+
+.method-cta__inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 50, 51, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.method-cta__text h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(20px, 2.5vw, 26px);
+    color: var(--text-on-dark);
+    margin: 0 0 10px;
+    line-height: 1.2;
+}
+
+.method-cta__text p {
+    font-size: 15px;
+    color: var(--muted-on-dark);
+    margin: 0;
+    max-width: 460px;
+    line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media(max-width: 900px) {
+    .method-timeline__line { display: none; }
+
+    .method-step {
+        padding: 40px 0;
+    }
+
+    .method-step__card {
+        padding: 32px 24px;
+    }
+
+    .method-cta__inner {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+        gap: 24px;
+    }
+
+    .method-head__title {
+        font-size: clamp(26px, 5vw, 40px);
+    }
+}
+
+@media(max-width: 600px) {
+    .method-head {
+        margin-bottom: 48px;
+    }
+}

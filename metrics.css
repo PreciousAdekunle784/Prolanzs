@@ -1,0 +1,336 @@
+/* ================================================
+   PROLANZ BRAND COLOR OVERRIDES
+   Replaces all green/teal references with brand red
+   ================================================ */
+
+/* Glow Accents — brand red versions */
+.glow-accent { position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; }
+.glow-accent--brand  { width: 600px; height: 600px; background: var(--brand-glow); }
+.glow-accent--emerald { width: 600px; height: 600px; background: var(--brand-glow); }
+.glow-accent--gold   { width: 500px; height: 500px; background: var(--gold-glow); }
+
+/* Preloader accent  */
+.preloader__logo span { color: var(--brand); }
+
+/* Bar fills — brand red */
+.bar-fill { background: linear-gradient(90deg, var(--brand-dark) 0%, var(--brand-bright) 100%); }
+.bar-fill--brand { background: linear-gradient(90deg, var(--brand-dark) 0%, var(--brand) 100%); }
+.bar-fill--gold  { background: linear-gradient(90deg, var(--gold-hover) 0%, var(--gold) 100%); }
+.bar-value { color: var(--brand); }
+
+/* Rings — brand red */
+.ring-progress { stroke: var(--brand); }
+.ring-progress--gold { stroke: var(--gold); }
+
+/* Sparklines — brand red */
+.sparkline-path { stroke: var(--brand); }
+.sparkline-badge { background: rgba(255, 50, 51, 0.10); color: var(--brand); }
+
+/* Analytics widget change indicator */
+.analytics-kpi__change { color: var(--brand); }
+
+/* ROI visual glow */
+.roi-visual::before { background: var(--brand-glow); }
+.roi-total { background: rgba(255, 50, 51, 0.07); border-color: rgba(255, 50, 51, 0.14); }
+.roi-total__val { color: var(--brand); }
+
+/* Dot grid color */
+.dot-grid { background-image: radial-gradient(circle, var(--brand) 1px, transparent 1px); }
+
+/* Metric pill */
+.metric-pill .dot { background: var(--brand); animation: pulse 2s ease-in-out infinite; }
+
+/* Icon rings */
+.icon-ring--brand  { background: var(--brand-glow); color: var(--brand); }
+.icon-ring--emerald { background: var(--brand-glow); color: var(--brand); }
+
+/* ================================================
+   METRICS DASHBOARD — Results Section
+   ================================================ */
+
+/* ── Channel Performance Chart ── */
+.metrics-section { margin-top: 64px; }
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+@media(max-width: 768px) { .metrics-grid { grid-template-columns: 1fr; } }
+
+/* ── Metric Card ── */
+.metric-card {
+    background: var(--ink-3);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-md);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.metric-card:hover {
+    border-color: rgba(255, 50, 51, 0.25);
+    transform: translateY(-3px);
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brand), var(--gold));
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.metric-card:hover::before { opacity: 1; }
+
+.metric-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.metric-card__title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-on-dark);
+    font-family: var(--mono);
+}
+
+.metric-card__change {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+}
+
+.metric-card__change--up {
+    background: rgba(255, 50, 51, 0.10);
+    color: var(--brand);
+}
+
+.metric-card__change--gold {
+    background: rgba(245, 166, 35, 0.12);
+    color: var(--gold);
+}
+
+.metric-card__value {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(32px, 5vw, 52px);
+    color: var(--text-on-dark);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+}
+
+.metric-card__sub {
+    font-size: 13px;
+    color: var(--muted-on-dark);
+    margin-bottom: 20px;
+}
+
+/* ── Inline Channel Performance Bars ── */
+.channel-bars { display: flex; flex-direction: column; gap: 14px; }
+.channel-bar { }
+.channel-bar__meta { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.channel-bar__name { font-size: 12px; font-weight: 600; color: var(--text-on-dark); }
+.channel-bar__pct  { font-family: var(--mono); font-size: 11px; color: var(--muted-on-dark); }
+.channel-bar__track {
+    height: 6px;
+    border-radius: 4px;
+    background: var(--border-on-dark);
+    overflow: hidden;
+}
+.channel-bar__fill {
+    height: 100%;
+    border-radius: 4px;
+    width: 0;
+    transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.channel-bar__fill--brand { background: var(--brand); }
+.channel-bar__fill--gold  { background: var(--gold); }
+.channel-bar__fill--light { background: var(--brand-bright); }
+.channel-bar__fill--muted { background: rgba(168, 152, 152, 0.5); }
+
+/* ── Sparkline Card ── */
+.spark-card {
+    background: var(--ink-3);
+    border: 1px solid var(--border-on-dark);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.spark-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.spark-card__label {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-on-dark);
+    margin-bottom: 6px;
+}
+
+.spark-card__num {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 26px;
+    color: var(--text-on-dark);
+    line-height: 1;
+}
+
+.spark-card__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    background: rgba(255, 50, 51, 0.10);
+    color: var(--brand);
+    flex-shrink: 0;
+}
+
+.spark-card__badge--gold {
+    background: rgba(245, 166, 35, 0.10);
+    color: var(--gold);
+}
+
+/* ── Metrics Row (4 wide stats) ── */
+.metrics-hero-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border-on-dark);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 24px;
+    border: 1px solid var(--border-on-dark);
+}
+
+@media(max-width: 768px) {
+    .metrics-hero-row { grid-template-columns: 1fr 1fr; }
+}
+
+.metrics-hero-stat {
+    background: var(--ink-2);
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.metrics-hero-stat__num {
+    font-family: var(--display);
+    font-weight: 900;
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--text-on-dark);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.metrics-hero-stat__num--brand { color: var(--brand); }
+.metrics-hero-stat__num--gold  { color: var(--gold); }
+
+.metrics-hero-stat__label {
+    font-size: 12px;
+    color: var(--muted-on-dark);
+    line-height: 1.4;
+    max-width: 120px;
+    margin: 0 auto;
+}
+
+/* ── Live ticker metrics strip ── */
+.live-metrics {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 24px;
+    background: var(--ink-3);
+    border: 1px solid rgba(255, 50, 51, 0.12);
+    border-radius: var(--radius-sm);
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.live-metrics__item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+
+.live-metrics__dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--brand);
+    animation: pulse 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.live-metrics__dot--gold { background: var(--gold); }
+
+.live-metrics__val {
+    font-family: var(--mono);
+    font-weight: 700;
+    color: var(--text-on-dark);
+    font-size: 14px;
+}
+
+.live-metrics__key { color: var(--muted-on-dark); }
+
+.live-metrics__sep {
+    width: 1px;
+    height: 20px;
+    background: var(--border-on-dark);
+}
+
+@media(max-width: 600px) { .live-metrics__sep { display: none; } }
+
+/* ── Review Stars ── */
+.review-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.review-star {
+    color: var(--gold);
+    font-size: 20px;
+    animation: starPop 0.4s var(--ease-spring) both;
+}
+
+.review-star:nth-child(1) { animation-delay: 0.0s; }
+.review-star:nth-child(2) { animation-delay: 0.08s; }
+.review-star:nth-child(3) { animation-delay: 0.16s; }
+.review-star:nth-child(4) { animation-delay: 0.24s; }
+.review-star:nth-child(5) { animation-delay: 0.32s; }
+
+@keyframes starPop {
+    0%   { transform: scale(0); opacity: 0; }
+    70%  { transform: scale(1.3); }
+    100% { transform: scale(1); opacity: 1; }
+}
