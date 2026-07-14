@@ -2394,3 +2394,14 @@ footer {
         transform: translateX(-50%) scale(0.95);
     }
 }
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, 20px) scale(var(--scale, 1));
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(var(--scale, 1));
+    }
+}
